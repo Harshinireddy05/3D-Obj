@@ -1,0 +1,74 @@
+body {
+    margin: 0;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+
+:root {
+    --size: 150px; /* Adjust this value to change the pyramid size */
+}
+
+.perspective {
+    position: relative;
+    perspective: 800px;
+    perspective-origin: 50% -200px;
+}
+
+.pyramid {
+    width: var(--size);
+    height: var(--size);
+    position: relative;
+    transform-style: preserve-3d;
+    transform-origin: 50% bottom;
+    animation: rotate 4s linear infinite;
+}
+
+.face {
+    position: absolute;
+    width: var(--size);
+    height: var(--size);
+    background-color: hsl( 270, 100%, 66% ); /* Adjust for different color */
+    transform-style: preserve-3d;
+}
+
+.base {
+    position: absolute;
+    width: 0;
+    height: 0;
+    bottom: 0;
+    border-left: var(--size)/2 solid transparent;
+    border-right: var(--size)/2 solid transparent;
+    border-bottom: var(--size) solid hsl( 270, 100%, 50% ); /* Adjust for base color */
+}
+
+.bottom {
+    transform-origin: bottom;
+}
+
+.top {
+    transform: rotateX(-180deg);
+    transform-origin: top;
+}
+
+.back {
+    transform: rotateY(180deg);
+    transform-origin: center 0% -50%;
+}
+
+.right {
+    transform: rotateY(90deg);
+    transform-origin: left center -50%;
+}
+
+.left {
+    transform: rotateY(-90deg);
+    transform-origin: right center -50%;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0); }
+    to { transform: rotateY(360deg); }
+}
